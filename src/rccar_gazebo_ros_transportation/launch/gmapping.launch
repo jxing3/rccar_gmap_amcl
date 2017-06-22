@@ -1,0 +1,8 @@
+<launch>
+	<node pkg="gmapping" type="slam_gmapping" name="rccar_gmapping" output="screen">	
+	  <rosparam file="$(find rc_car)/config/gmapping.yaml" command="load" />
+
+          <remap from="scan"          to="/Unicycle/laserscan"/>
+	  
+	</node>
+</launch>

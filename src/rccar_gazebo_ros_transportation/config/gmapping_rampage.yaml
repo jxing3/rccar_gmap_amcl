@@ -1,0 +1,58 @@
+#
+# http://www.ros.org/wiki/gmapping
+#
+
+  
+throttle_scans:       1
+base_frame:           /base_link
+map_frame:            /map
+odom_frame:           /odom
+map_update_interval:  2.0 
+
+# Unset maxUrange and maxRange and it will autodetect
+maxUrange:            30.0
+sigma:                0.05
+kernelSize:           1 
+lstep:                0.02
+astep:                0.05
+iterations:           5 
+lsigma:               0.01
+ogain:                3.0
+lskip:                0
+
+srr:                  0.1  #translation as function of translation .02
+srt:                  0.2  #translation as function of rotation .05
+str:                  0.1  #rotation error as function of translation .02
+stt:                  0.2  #rotation error as function of rotation .05
+
+linearUpdate:         0.5   #increase if fails   #.1  
+angularUpdate:        0.5   #increase if fails   #.1
+temporalUpdate:       2.0  #increase if fails    #.05
+
+resampleThreshold:    0.5    
+particles:            30  #200
+
+# Initial Map Size & Resolution
+xmin:                -2
+ymin:                -2
+xmax:                 2
+ymax:                 2
+delta:                0.05   #.02
+
+llsamplerange:        0.01           
+llsamplestep:         0.01
+lasamplerange:        0.005  
+lasamplestep:         0.005
+
+transform_publish_period:  0.05       
+occ_thresh:           0.25
+maxRange:           32.0
+
+#tf_delay:             0.1
+
+
+
+
+
+
+

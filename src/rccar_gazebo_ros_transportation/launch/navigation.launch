@@ -1,0 +1,12 @@
+<launch>
+	<node pkg="move_base" type="move_base" name="rccar_move_base">
+		<rosparam file="$(find rc_car)/config/move_base/move_base.yaml" command="load"/>
+		<rosparam file="$(find rc_car)/config/move_base/costmap_common.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find rc_car)/config/move_base/costmap_common.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find rc_car)/config/move_base/costmap_global.yaml" command="load"  />
+		<rosparam file="$(find rc_car)/config/move_base/costmap_local.yaml" command="load"/>
+		
+		
+	</node>
+
+</launch>

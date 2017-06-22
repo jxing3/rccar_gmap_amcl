@@ -1,0 +1,43 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rc_car)/worlds/rc_car.world"/>
+
+    <!-- more default parameters can be changed here -->
+  </include>
+
+<!-- publish laser data -->
+  <include file="$(find rc_car)/launch/gazebo_hokuyo.launch" />
+
+<!-- Gmapping launch files -->
+
+  <!--include file="$(find rc_car)/launch/gmapping.launch" /--> 
+
+<!-- AMCL launch file -->
+
+  <include file="$(find rc_car)/launch/amcl.launch" />
+
+<!-- Navigation stack -->
+
+  <include file="$(find rc_car)/launch/navigation.launch" />
+
+  <node pkg="rc_car" type="gmappingtf" name="rccar_Gazebo" /> 	
+
+<!-- Generate tf odom to /baselink w/ error -->
+
+   <!--node pkg="rc_car" type="tfgmaperr" name="tf_publish" /-->
+
+
+   
+
+<!-- velocity control --> 	
+	
+   <!--node pkg="rc_car" type="velctrl" name="vel_cmd" /--> 	
+
+	<!-- Spawn a RCcar 
+	<node pkg="rc_car" type="bashim" name="gazebo_server" 
+	      args="gzserver $(find rc_car)/rccar.sdf"/>
+       -->
+
+
+</launch>

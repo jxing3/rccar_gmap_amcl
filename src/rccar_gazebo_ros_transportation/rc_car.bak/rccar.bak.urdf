@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<robot name="Unicycle">
+  <link name="world"/>
+  <link name="carbody">
+    <visual>
+      <origin xyz="-0.13 0 0" rpy="1.57070 0 1.5707 "/>
+      <geometry>
+        <mesh filename="model://rccar/meshes/carwithoutfronttyres.dae" scale="0.001 0.001 0.001"/>
+        <!--mesh filename="package://gcop_urdf/meshes/Slash.dae"/-->
+        <!--box size="0.3 .10 0.05"/-->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.13 0 0" rpy="1.57070 0 1.5707 "/>
+      <geometry>
+        <mesh filename="model://rccar/meshes/carwithoutfronttyres.dae" scale="0.001 0.001 0.001"/>
+        <!--mesh filename="package://gcop_urdf/meshes/Slash.dae"/-->
+        <!--box size="0.3 .10 0.05"/-->
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+  </link>
+  <link name="kinect">
+    <visual>
+      <origin xyz=".03 -0.07 0.08" rpy="-1.5707 0 1.57070"/>
+      <geometry>
+        <mesh filename="model://rccar/meshes/kinect_sensor.dae" scale="0.00001 0.00001 0.00001"/>
+        <!--box size="0.3 .10 0.05"/-->
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz=".03 -0.07 0.08" rpy="-1.5707 0 1.57070"/>
+      <geometry>
+        <mesh filename="model://rccar/meshes/kinect_sensor.dae" scale="0.00001 0.00001 0.00001"/>
+        <!--box size="0.3 .10 0.05"/-->
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="backwheel1">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="backwheel2">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <collsion>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collsion>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="frontwheel1">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="frontwheel2">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <!-- Joints -->
+  <joint name="basetocarbody" type="fixed">
+    <parent link="world"/>
+    <child link="carbody"/>
+    <origin rpy="0 0 0" xyz="0.15 0.0 0"/>
+  </joint>
+  <joint name="carbodytokinect" type="fixed">
+    <parent link="carbody"/>
+    <child link="kinect"/>
+    <origin rpy="0 0 0" xyz="0.15 0.0 0"/>
+  </joint>
+  <joint name="base_to_backwheel1" type="continuous">
+    <parent link="carbody"/>
+    <child link="backwheel1"/>
+    <origin rpy="-1.5707 0 0" xyz="-0.15 -0.13 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <joint name="base_to_frontwheel1" type="continuous">
+    <parent link="carbody"/>
+    <child link="frontwheel1"/>
+    <origin rpy="-1.5707 0 0" xyz="0.15 -0.14 0"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+  <joint name="base_to_frontwheel2" type="continuous">
+    <parent link="carbody"/>
+    <child link="frontwheel2"/>
+    <origin rpy="-1.5707 0 0" xyz="0.15 0.14 0"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+  <joint name="backwheel1_to_backwheel2" type="fixed">
+    <parent link="backwheel1"/>
+    <child link="backwheel2"/>
+    <origin rpy="0 0 0" xyz="0 0 0.260"/>
+  </joint>
+  <gazebo reference="carbody">
+    <material>
+      <script>
+        <uri>model://polaris_ranger_xp900/materials/scripts</uri>
+        <uri>model://polaris_ranger_xp900/materials/textures</uri>
+        <name>PolarisXP900/Diffuse</name>
+      </script>
+    </material>
+  </gazebo>
+  <gazebo reference="backwheel1">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="backwheel2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="frontwheel1">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="frontwheel2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+</robot>

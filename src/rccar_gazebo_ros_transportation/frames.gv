@@ -1,0 +1,5 @@
+digraph G {
+"map" -> "odom"[label="Broadcaster: /amcl\nAverage rate: 29.579 Hz\nMost recent transform: 311.368 \nBuffer length: 4.226 sec\n"];
+"odom" -> "base_link"[label="Broadcaster: /rccar_Gazebo\nAverage rate: 66.336 Hz\nMost recent transform: 311.412 \nBuffer length: 4.236 sec\n"];
+"base_link" -> "Unicycle/laserscan"[label="Broadcaster: /rccar_laserscan_tf\nAverage rate: 30.368 Hz\nMost recent transform: 310.925 \nBuffer length: 4.215 sec\n"];
+}

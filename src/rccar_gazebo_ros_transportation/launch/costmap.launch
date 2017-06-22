@@ -1,0 +1,7 @@
+<launch>        
+
+	<node pkg="costmap_2d" type="costmap_2d_node" name="costmap_2d_node" >
+            <rosparam file="$(find rc_car)/config/move_base/costmap_common.yaml" command="load" />
+            <rosparam file="$(find rc_car)/config/move_base/costmap_global.yaml" command="load"  />
+          </node>
+</launch>

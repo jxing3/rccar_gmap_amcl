@@ -1,0 +1,16 @@
+<launch>      
+    	<node name="map_server" pkg="map_server" type="map_server" args="$(find rc_car)/rampage_map/map.yaml">
+  	  <param name="frame_id" type="str" value="/map"  />
+	  </node>
+
+	  <node pkg="amcl" type="amcl" name="amcl" >
+	    <rosparam file="$(find rc_car)/config/amcl.yaml" command="load"  />
+	    <remap from="scan" to="/first" />
+	    <remap from="/Unicycle/initialpose" to="/initialpose" />
+	  </node>
+
+	
+	  <!-- Distribute pose array across free space --> 
+	    <node pkg="rosservice" type="rosservice" name="global_loc" args="call --wait /global_localization"/>
+
+</launch>
